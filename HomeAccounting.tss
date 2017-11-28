@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\views\mainwindow.xaml</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\views\mainwindow.xaml.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Mapping\PersonMap.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\resources\styles\imagedictionary.xaml</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\Views\BaseInfo\PersonListView.xaml</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\views\baseinfo\personlistview.xaml.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\viewmodels\baseinfo\personlistviewvm.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Mapping\AccountMap.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Models\Person.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Models\Account.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Mapping\DebtDemandLabelMap.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\App.config</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Models\HomeAccounting.tt</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>
