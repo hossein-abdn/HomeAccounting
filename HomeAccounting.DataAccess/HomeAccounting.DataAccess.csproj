@@ -50,11 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Database1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Enums\RecordStatus.cs" />
     <Compile Include="Mapping\AccountMap.cs">
       <DependentUpon>HomeAccountingMap.tt</DependentUpon>
     </Compile>
@@ -173,10 +169,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Database1.cs</LastGenOutput>
-    </Content>
     <Content Include="Mapping\HomeAccountingMap.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HomeAccountingMap.cs</LastGenOutput>

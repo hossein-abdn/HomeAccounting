@@ -49,7 +49,7 @@ namespace HomeAccounting.DataAccess.Models
 
         [Required]
         [Display(Name = "وضعیت")]
-        public int RecordStatusId { get; set; } // RecordStatusId
+        public Enums.RecordStatus RecordStatusId { get; set; } // RecordStatusId
 
         // Reverse navigation
 

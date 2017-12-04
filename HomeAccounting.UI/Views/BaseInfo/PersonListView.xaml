@@ -11,6 +11,10 @@
       FontFamily="IRANSans"
       Title="PersonListView">
 
+    <Page.Resources>
+        <ctl:BindingProxy x:Key="proxy" Data="{Binding}"/>
+    </Page.Resources>
+
     <i:Interaction.Behaviors>
         <ctl:EventToCommand EventName="Loaded" Command="{Binding LoadedEventCommand}"/>
     </i:Interaction.Behaviors>
@@ -23,14 +27,14 @@
         </Grid.ColumnDefinitions>
         <GroupBox Style="{StaticResource HeaderPage}" Grid.Column="1">
             <DockPanel TextBlock.FontSize="12" TextBlock.FontWeight="Normal">
-                <ctl:SearchPanel DockPanel.Dock="Top" RowMargin="5" ColumnMargin="5" SearchCommand="{Binding GetAllCommand}">
+                <ctl:SearchPanel DockPanel.Dock="Top" RowMargin="5" ColumnMargin="5" SearchCommand="{Binding GetAllCommand}" SearchPhrase="{Binding SearchPhrase,Mode=OneWayToSource}">
                     <ctl:TextField Title="نام" FilterField="Name"/>
                 </ctl:SearchPanel>
-                <ctl:ImageButton Content="جدید" DockPanel.Dock="Top" Image="{StaticResource Add-32}" MouseOverImage="{StaticResource AddOver-32}" HorizontalAlignment="Left" Margin="0,5" ImageSize="15" Command="{Binding CreateCommand}"/>
+                <ctl:ImageButton Content="جدید" DockPanel.Dock="Top" Image="{StaticResource Add-32}" MouseOverImage="{StaticResource AddOver-32}" HorizontalAlignment="Left" Margin="0,5" ImageSize="15" Command="{Binding CreateEditCommand}"/>
                 <ctl:CustomGrid ColumnsToAdd="Name,CreateDate" ItemsSource="{Binding ItemsSource}">
                     <ctl:CustomGrid.ButtonColumns>
-                        <ctl:CustomButtonColumn ButtonType="Edit" Order="2" Width="32"/>
-                        <ctl:CustomButtonColumn ButtonType="Delete" Order="3" Width="32"/>
+                        <ctl:CustomButtonColumn ButtonType="Edit" Order="2" Width="32" Command="{Binding Data.CreateEditCommand,Source={StaticResource proxy}}"/>
+                        <ctl:CustomButtonColumn ButtonType="Delete" Order="3" Width="32" Command="{Binding Data.ChangeStatusCommand,Source={StaticResource proxy}}"/>
                         <ctl:CustomButtonColumn Image="{StaticResource Chart-32}" MouseOverImage="{StaticResource ChartOver-32}" Width="32" Order="4" ToolTip="نمودار"/>
                     </ctl:CustomGrid.ButtonColumns>
                 </ctl:CustomGrid>

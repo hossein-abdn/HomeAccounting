@@ -26,7 +26,7 @@
     
     <DockPanel FlowDirection="RightToLeft">
 
-        <ctl:Billboard DockPanel.Dock="Top" Margin="0,2"/>
+        <ctl:Billboard DockPanel.Dock="Top" Margin="0,2" FlowDirection="RightToLeft" FontSize="16"/>
 
         <c1:C1Toolbar Name="toolbar" DockPanel.Dock="Top" Margin="3,0" FontFamily="IRANSans">
             <c1:C1ToolbarTabItem Header="اطلاعات پایه" HeaderTemplate="{StaticResource TabTemplate}" ctl:AttachImage.Image="{StaticResource GeneralInfo-32}">

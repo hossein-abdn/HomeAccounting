@@ -50,6 +50,10 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.2.1\lib\net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Infra.Wpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Infra.Wpf\Infra.Wpf\bin\Debug\Infra.Wpf.dll</HintPath>
@@ -101,6 +105,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Validators\PersonValidator.cs" />
     <Compile Include="ViewModels\BaseInfo\LabelListVM.cs" />
     <Compile Include="ViewModels\BaseInfo\PersonCreateVM.cs" />
     <Compile Include="ViewModels\BaseInfo\TransactionGroupListVM.cs" />

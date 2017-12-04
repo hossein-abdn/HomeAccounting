@@ -24,5 +24,12 @@ namespace HomeAccounting.Business
         public AccountingUow(System.Data.Entity.DbContext context) : base(context)
         {
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            personRepository = null;
+
+            base.Dispose(disposing);
+        }
     }
 }

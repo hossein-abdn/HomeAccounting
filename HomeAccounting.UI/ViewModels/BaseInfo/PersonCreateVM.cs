@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using Infra.Wpf.Common.Helpers;
 using HomeAccounting.Business;
 using Infra.Wpf.Business;
+using HomeAccounting.UI.Validators;
+using FluentValidation.Results;
+using HomeAccounting.Business.BaseInfo;
 
 namespace HomeAccounting.UI.ViewModels.BaseInfo
 {
@@ -32,27 +35,36 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             {
                 isEdit = true;
                 ViewTitle = "ویرایش شخص";
-                Model = model.Copy();
+                Model = model;
             }
         }
 
         private void SubmitExecute()
         {
-            Model.UserId = 1;
-            Model.CreateDate = DateTime.Now;
-            Model.RecordStatusId = 1;
+            using (var uow = new AccountingUow())
+            {
+                PersonValidator validator = new PersonValidator();
+                ValidationResult validationResult = validator.Validate(Model);
+                if(!validationResult.IsValid)
+                {
+                    foreach (var item in validationResult.Errors)
+                        Billboard.ShowMessage(Infra.Wpf.Controls.MessageType.Error, item.ErrorMessage);
+                    return;
+                }
 
-            var uow = new AccountingUow();
-            BusinessResult<bool> result;
+                BusinessResult<bool> result = ((PersonRepository) uow.PersonRepository).AddOrUpdate(Model, isEdit);
 
-            if (isEdit)
-                result = uow.PersonRepository.Update(Model);
-            else
-                result = uow.PersonRepository.Add(Model);
-
-            uow.SaveChange();
-            Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
-            NavigationService.GoBack();
+                if (result.Exception == null && result.IsOnBeforExecute)
+                {
+                    BusinessResult<int> saveResult = uow.SaveChange();
+                    if (saveResult.Exception != null)
+                        result.Message = saveResult.Message;
+                    else
+                        NavigationService.GoBack();
+                }
+                
+                Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
+            }
         }
     }
 }
