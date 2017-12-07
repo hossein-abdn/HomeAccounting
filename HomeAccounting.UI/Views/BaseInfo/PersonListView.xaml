@@ -31,7 +31,7 @@
                     <ctl:TextField Title="نام" FilterField="Name"/>
                 </ctl:SearchPanel>
                 <ctl:ImageButton Content="جدید" DockPanel.Dock="Top" Image="{StaticResource Add-32}" MouseOverImage="{StaticResource AddOver-32}" HorizontalAlignment="Left" Margin="0,5" ImageSize="15" Command="{Binding CreateEditCommand}"/>
-                <ctl:CustomGrid ColumnsToAdd="Name,CreateDate" ItemsSource="{Binding ItemsSource}">
+                <ctl:CustomGrid x:Name="grid" ColumnsToAdd="Name,CreateDate" ItemsSource="{Binding ItemsSource}">
                     <ctl:CustomGrid.ButtonColumns>
                         <ctl:CustomButtonColumn ButtonType="Edit" Order="2" Width="32" Command="{Binding Data.CreateEditCommand,Source={StaticResource proxy}}"/>
                         <ctl:CustomButtonColumn ButtonType="Delete" Order="3" Width="32" Command="{Binding Data.ChangeStatusCommand,Source={StaticResource proxy}}"/>

@@ -26,7 +26,10 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             set { Set(value); }
         }
 
-        public PersonListVM()
+        private AccountingUow accountingUow { get; set; }
+
+
+        public PersonListVM(AccountingUow uow)
         {
             ViewTitle = "لیست اشخاص";
 
@@ -34,52 +37,51 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             LoadedEventCommand = new RelayCommand(LoadedEventExecute);
             CreateEditCommand = new RelayCommand<Person>(CreateEditExecute);
             ChangeStatusCommand = new RelayCommand<Person>(ChangeStatusExecute);
+
+            accountingUow = uow;
         }
 
         private void ChangeStatusExecute(Person model)
         {
             if (ShowMessageBox("آیا مطمئن هستید؟", "حذف", Infra.Wpf.Controls.MsgButton.YesNo, Infra.Wpf.Controls.MsgIcon.Question, Infra.Wpf.Controls.MsgResult.No) == Infra.Wpf.Controls.MsgResult.Yes)
             {
-                using (var uow = new AccountingUow())
+                Messenger.Default.Send(model, "PersonListView_SaveItemIndex");
+                var result = ((PersonRepository) accountingUow.PersonRepository).ChangeStatus(model);
+
+                BusinessResult<int> saveResult = null;
+                if (result.Exception == null)
                 {
-                    var result = ((PersonRepository) uow.PersonRepository).ChangeStatus(model);
+                    saveResult = accountingUow.SaveChange();
+                    if (saveResult.Exception != null)
+                        result.Message = saveResult.Message;
 
-                    BusinessResult<int> saveResult = null;
-                    if (result.Exception == null)
-                    {
-                        saveResult = uow.SaveChange();
-                        if (saveResult.Exception != null)
-                            result.Message = saveResult.Message;
-
-                        GetAllExecute(SearchPhrase);
-                    }
-
-                    Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
+                    GetAllExecute(SearchPhrase);
+                    Messenger.Default.Send("index", "PersonListView_SetScrollView");
                 }
+
+                Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
             }
         }
 
         private void CreateEditExecute(Person model)
         {
-            NavigationService.NavigateTo(new PersonCreateVM(model));
+            NavigationService.NavigateTo(new PersonCreateVM(accountingUow, model));
         }
 
         private void LoadedEventExecute()
         {
             GetAllExecute(SearchPhrase);
+            Messenger.Default.Send("id", "PersonListView_SetScrollView");
         }
 
         private void GetAllExecute(string predicate)
         {
-            using (var uow = new AccountingUow())
-            {
-                var result = uow.PersonRepository.GetAll(predicate: predicate);
+            var result = accountingUow.PersonRepository.GetAll(predicate: predicate);
 
-                if (result.Exception == null)
-                    ItemsSource = new ObservableCollection<Person>(result.Data);
-                else
-                    Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
-            }
+            if (result.Exception == null)
+                ItemsSource = new ObservableCollection<Person>(result.Data);
+            else
+                Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
         }
     }
 }

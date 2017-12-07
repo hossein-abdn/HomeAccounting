@@ -1,4 +1,5 @@
-﻿using HomeAccounting.UI.ViewModels.BaseInfo;
+﻿using HomeAccounting.Business;
+using HomeAccounting.UI.ViewModels.BaseInfo;
 using Infra.Wpf.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace HomeAccounting.UI.ViewModels
 
         private void PersonListViewExecute()
         {
-            NavigationService.NavigateTo(new PersonListVM());
+            NavigationService.NavigateTo(new PersonListVM(new AccountingUow()));
         }
 
         private void LabelListViewExecute()

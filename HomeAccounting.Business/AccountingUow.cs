@@ -21,6 +21,7 @@ namespace HomeAccounting.Business
         public AccountingUow() : this(new AccountingContext())
         {
         }
+
         public AccountingUow(System.Data.Entity.DbContext context) : base(context)
         {
         }
