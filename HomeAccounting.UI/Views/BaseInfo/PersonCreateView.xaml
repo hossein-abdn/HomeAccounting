@@ -23,7 +23,7 @@
             <ctl:EditViewPanel FontSize="12" FontWeight="Normal" SubmitCommand="{Binding SubmitCommand}" ColumnMargin="20" RowMargin="10">
                 <ctl:EditViewPanel.EditFields>
                     <ctl:TextField Text="{Binding Model.Name}"/>
-                    <ctl:NumericField Value="{Binding Model.OrderItem}"/>
+                    <ctl:NumericField Value="{Binding Model.OrderItem}" MinValue="1"/>
                 </ctl:EditViewPanel.EditFields>
             </ctl:EditViewPanel>
         </GroupBox>
