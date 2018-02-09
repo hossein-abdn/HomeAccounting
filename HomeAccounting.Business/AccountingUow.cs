@@ -1,11 +1,6 @@
 ﻿using HomeAccounting.Business.BaseInfo;
 using HomeAccounting.DataAccess.Models;
 using Infra.Wpf.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeAccounting.Business
 {
@@ -15,14 +10,14 @@ namespace HomeAccounting.Business
 
         public IRepository<Person> PersonRepository
         {
-            get { return personRepository ?? (personRepository = new PersonRepository(_context)); }
+            get { return personRepository ?? (personRepository = new PersonRepository(Context, Logger, false)); }
         }
 
         public AccountingUow() : this(new AccountingContext())
         {
         }
 
-        public AccountingUow(System.Data.Entity.DbContext context) : base(context)
+        public AccountingUow(System.Data.Entity.DbContext context) : base(context, new Infra.Wpf.Business.Logger("AccountingContext"))
         {
         }
 

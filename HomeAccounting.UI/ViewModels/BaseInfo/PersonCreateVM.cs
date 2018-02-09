@@ -56,11 +56,10 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             }
 
             BusinessResult<bool> result = ((PersonRepository) accountingUow.PersonRepository).AddOrUpdate(Model, isEdit);
-
-            if (result.Exception == null && result.IsOnBeforExecute)
+            if (result.HasException == false && result.IsOnBeforExecute)
             {
                 BusinessResult<int> saveResult = accountingUow.SaveChange();
-                if (saveResult.Exception != null)
+                if (saveResult.HasException)
                     result.Message = saveResult.Message;
                 else
                 {

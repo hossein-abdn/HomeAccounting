@@ -46,13 +46,12 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             if (ShowMessageBox("آیا مطمئن هستید؟", "حذف", Infra.Wpf.Controls.MsgButton.YesNo, Infra.Wpf.Controls.MsgIcon.Question, Infra.Wpf.Controls.MsgResult.No) == Infra.Wpf.Controls.MsgResult.Yes)
             {
                 Messenger.Default.Send(model, "PersonListView_SaveItemIndex");
-                var result = ((PersonRepository) accountingUow.PersonRepository).ChangeStatus(model);
 
-                BusinessResult<int> saveResult = null;
-                if (result.Exception == null)
+                var result = ((PersonRepository) accountingUow.PersonRepository).ChangeStatus(model);
+                if (result.HasException == false)
                 {
-                    saveResult = accountingUow.SaveChange();
-                    if (saveResult.Exception != null)
+                    BusinessResult<int> saveResult = accountingUow.SaveChange();
+                    if (saveResult.HasException)
                         result.Message = saveResult.Message;
 
                     GetAllExecute(SearchPhrase);
@@ -77,8 +76,7 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
         private void GetAllExecute(string predicate)
         {
             var result = accountingUow.PersonRepository.GetAll(predicate: predicate);
-
-            if (result.Exception == null)
+            if (result.HasException == false)
                 ItemsSource = new ObservableCollection<Person>(result.Data);
             else
                 Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);

@@ -5,13 +5,19 @@
       <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.business\baseinfo\personrepository.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\viewmodels\baseinfo\personcreatevm.cs</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.business\baseinfo\setorderitemsbusiness.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\views\baseinfo\personlistview.xaml</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\viewmodels\baseinfo\personlistvm.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\ViewModels\BaseInfo\PersonListVM.cs</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.business\accountinguow.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\Infra.Wpf\Infra.Wpf\Business\UpdateBusiness.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\ViewModels\MainWindowVM.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>
