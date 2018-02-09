@@ -75,7 +75,11 @@ namespace HomeAccounting.Business.BaseInfo
             }
             else
             {
-                model.CreateDate = DateTime.Now;
+                var resultDate = GetDateTime();
+                if(resultDate.HasException)
+                    return new BusinessResult<bool> { Exception = resultDate.Exception, Message = resultDate.Message };
+
+                model.CreateDate = resultDate.Data;
 
                 AddBusiness.OnBeforeExecute = () =>
                 {
