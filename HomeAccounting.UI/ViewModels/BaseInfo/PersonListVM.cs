@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System;
 using Infra.Wpf.Business;
 using HomeAccounting.Business.BaseInfo;
+using Infra.Wpf.Common.Helpers;
+using System.Linq;
 
 namespace HomeAccounting.UI.ViewModels.BaseInfo
 {
@@ -64,7 +66,7 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
 
         private void CreateEditExecute(Person model)
         {
-            NavigationService.NavigateTo(new PersonCreateVM(accountingUow, model));
+            NavigationService.NavigateTo(new PersonCreateVM(accountingUow, model?.Copy()));
         }
 
         private void LoadedEventExecute()

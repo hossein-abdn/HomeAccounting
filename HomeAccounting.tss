@@ -17,7 +17,10 @@
       <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\Infra.Wpf\Infra.Wpf\Business\UpdateBusiness.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\ViewModels\MainWindowVM.cs</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\viewmodels\mainwindowvm.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\ViewModels\BaseInfo\PersonCreateVM.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

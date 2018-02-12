@@ -37,30 +37,30 @@ namespace HomeAccounting.Business.BaseInfo
 
             if (_isEdit)
             {
-                var entry = _context.Entry(_model);
-                if (entry.State == EntityState.Detached)
-                {
-                    _context.Set<Person>().Attach(_model);
-                    entry = _context.Entry(_model);
-                    entry.State = EntityState.Modified;
-                }
+                var result = _repository.GetFirst(x => x.PersonId == _model.PersonId);
+                if (result.HasException)
+                    throw result.Exception;
+
+                var orginalModel = result.Data;
+                orginalModel.OrderItem = _model.OrderItem;
+                var entry = _context.Entry(orginalModel);
                 var orginalValue = (entry.OriginalValues["OrderItem"] as int?);
 
-                if (_model.OrderItem == null || _model.OrderItem > countResult.Data)
-                    _model.OrderItem = countResult.Data;
+                if (orginalModel.OrderItem == null || orginalModel.OrderItem > countResult.Data)
+                    orginalModel.OrderItem = countResult.Data;
 
-                if (_model.OrderItem > orginalValue)
+                if (orginalModel.OrderItem > orginalValue)
                 {
-                    var listResult = _repository.GetAll(x => x.OrderItem > orginalValue && x.OrderItem <= _model.OrderItem && x.RecordStatusId == RecordStatus.Exist);
+                    var listResult = _repository.GetAll(x => x.OrderItem > orginalValue && x.OrderItem <= orginalModel.OrderItem && x.RecordStatusId == RecordStatus.Exist);
                     if (listResult.HasException)
                         throw listResult.Exception;
 
                     foreach (var item in listResult.Data)
                         item.OrderItem--;
                 }
-                else if (_model.OrderItem < orginalValue)
+                else if (orginalModel.OrderItem < orginalValue)
                 {
-                    var listResult = _repository.GetAll(x => x.OrderItem >= _model.OrderItem && x.OrderItem < orginalValue && x.RecordStatusId == RecordStatus.Exist);
+                    var listResult = _repository.GetAll(x => x.OrderItem >= orginalModel.OrderItem && x.OrderItem < orginalValue && x.RecordStatusId == RecordStatus.Exist);
                     if (listResult.HasException)
                         throw listResult.Exception;
 
