@@ -41,7 +41,7 @@ namespace HomeAccounting.UI.ViewModels
 
         private void ClosedEventExecute()
         {
-            Logger logger = new Logger("AccountingContext");
+            Logger logger = new Logger(AccountingUow.ConnectionString);
             logger.Log(new LogInfo
             {
                 CallSite = this.GetType().FullName,

@@ -57,7 +57,7 @@ namespace HomeAccounting.UI.ViewModels
 
         private void LoginExecute()
         {
-            LoginBusiness business = new LoginBusiness(UserName, Password, new Logger("AccountingContext"));
+            LoginBusiness business = new LoginBusiness(UserName, Password, new Logger(AccountingUow.ConnectionString));
             business.Execute();
 
             if (business.Result.IsOnExecute)
