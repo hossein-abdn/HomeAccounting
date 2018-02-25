@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // TransactionLabel
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public partial class TransactionLabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TransactionLabel>
+    public class TransactionLabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TransactionLabel>
     {
         public TransactionLabelMap()
             : this("dbo")
@@ -37,9 +37,7 @@ namespace HomeAccounting.DataAccess.Mapping
             // Foreign keys
             HasRequired(a => a.Label).WithMany(b => b.TransactionLabels).HasForeignKey(c => c.LabelId).WillCascadeOnDelete(false); // FK_TransactionLabel_Label
             HasRequired(a => a.Transaction).WithMany(b => b.TransactionLabels).HasForeignKey(c => c.TransactionId).WillCascadeOnDelete(false); // FK_TransactionLabel_Transaction
-            InitializePartial();
         }
-        partial void InitializePartial();
     }
 
 }

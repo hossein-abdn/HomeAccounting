@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Notification
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public partial class NotificationMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Notification>
+    public class NotificationMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Notification>
     {
         public NotificationMap()
             : this("dbo")
@@ -40,9 +40,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
             // Foreign keys
             HasRequired(a => a.User).WithMany(b => b.Notifications).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Notification_User
-            InitializePartial();
         }
-        partial void InitializePartial();
     }
 
 }

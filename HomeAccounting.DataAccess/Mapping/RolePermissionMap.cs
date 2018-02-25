@@ -18,26 +18,25 @@ namespace HomeAccounting.DataAccess.Mapping
 {
     using Models;
 
-    // Label
+    // RolePermission
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class LabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Label>
+    public class RolePermissionMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RolePermission>
     {
-        public LabelMap()
+        public RolePermissionMap()
             : this("dbo")
         {
         }
 
-        public LabelMap(string schema)
+        public RolePermissionMap(string schema)
         {
-            ToTable("Label", schema);
-            Property(x => x.LabelId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            Property(x => x.Title).HasColumnName(@"Title").HasColumnType("nvarchar");
-            Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("int");
-            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime");
-            Property(x => x.RecordStatusId).HasColumnName(@"RecordStatusId").HasColumnType("int");
+            ToTable("RolePermission", schema);
+            Property(x => x.RolePermissionId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(x => x.RoleId).HasColumnName(@"RoleId").HasColumnType("int");
+            Property(x => x.PermissionId).HasColumnName(@"PermissionId").HasColumnType("int");
 
             // Foreign keys
-            HasRequired(a => a.User).WithMany(b => b.Labels).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Label_User
+            HasRequired(a => a.Permission).WithMany(b => b.RolePermissions).HasForeignKey(c => c.PermissionId).WillCascadeOnDelete(false); // FK_RolePermission_Permission
+            HasRequired(a => a.Role).WithMany(b => b.RolePermissions).HasForeignKey(c => c.RoleId).WillCascadeOnDelete(false); // FK_RolePermission_Role
         }
     }
 

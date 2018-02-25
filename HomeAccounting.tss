@@ -2,25 +2,24 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.business\baseinfo\personrepository.cs</string>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\Views\LoginWindow.xaml</string>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\Views\LoginWindow.xaml.cs</string>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\ViewModels\LoginWindowVM.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.business\baseinfo\setorderitemsbusiness.cs</string>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Models\HomeAccounting.tt</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\viewmodels\baseinfo\personlistvm.cs</string>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Mapping\HomeAccountingMap.tt</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.business\accountinguow.cs</string>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Models\IAccountingContext.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\Infra.Wpf\Infra.Wpf\Business\UpdateBusiness.cs</string>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\EF.Reverse.POCO.Core.ttinclude</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\viewmodels\mainwindowvm.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\ViewModels\BaseInfo\PersonCreateVM.cs</string>
+      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Models\VUserRole.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

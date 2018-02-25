@@ -1,10 +1,13 @@
 ﻿using HomeAccounting.Business;
 using HomeAccounting.UI.ViewModels.BaseInfo;
+using Infra.Wpf.Business;
 using Infra.Wpf.Mvvm;
+using Infra.Wpf.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HomeAccounting.UI.ViewModels
@@ -21,6 +24,8 @@ namespace HomeAccounting.UI.ViewModels
 
         public RelayCommand LoadedEventCommand { get; set; }
 
+        public RelayCommand ClosedEventCommand { get; set; }
+
         #endregion
 
         #region Methods
@@ -31,6 +36,19 @@ namespace HomeAccounting.UI.ViewModels
             LabelListViewCommand = new RelayCommand(LabelListViewExecute);
             TransactionGroupListViewCommand = new RelayCommand(TransactionGroupListViewExecute);
             LoadedEventCommand = new RelayCommand(LoadedEventExecute);
+            ClosedEventCommand = new RelayCommand(ClosedEventExecute);
+        }
+
+        private void ClosedEventExecute()
+        {
+            Logger logger = new Logger("AccountingContext");
+            logger.Log(new LogInfo
+            {
+                CallSite = this.GetType().FullName,
+                LogType = LogType.Information,
+                UserId = ((Identity) Thread.CurrentPrincipal.Identity).Id,
+                Message = "Logout: UserName = " + (Thread.CurrentPrincipal.Identity as Identity).Name
+            });
         }
 
         private void TransactionGroupListViewExecute()
@@ -45,7 +63,7 @@ namespace HomeAccounting.UI.ViewModels
 
         private void PersonListViewExecute()
         {
-            NavigationService.NavigateTo(new PersonListVM(new AccountingUow()));
+            NavigationService.NavigateTo(new PersonListVM());
         }
 
         private void LabelListViewExecute()

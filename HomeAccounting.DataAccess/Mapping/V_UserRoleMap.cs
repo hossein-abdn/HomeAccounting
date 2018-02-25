@@ -18,26 +18,22 @@ namespace HomeAccounting.DataAccess.Mapping
 {
     using Models;
 
-    // Label
+    // V_UserRole
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class LabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Label>
+    public class V_UserRoleMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<V_UserRole>
     {
-        public LabelMap()
+        public V_UserRoleMap()
             : this("dbo")
         {
         }
 
-        public LabelMap(string schema)
+        public V_UserRoleMap(string schema)
         {
-            ToTable("Label", schema);
-            Property(x => x.LabelId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            Property(x => x.Title).HasColumnName(@"Title").HasColumnType("nvarchar");
-            Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("int");
-            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime");
-            Property(x => x.RecordStatusId).HasColumnName(@"RecordStatusId").HasColumnType("int");
-
-            // Foreign keys
-            HasRequired(a => a.User).WithMany(b => b.Labels).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Label_User
+            ToTable("V_UserRole", schema);
+            Property(x => x.UserId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            Property(x => x.UserName).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            Property(x => x.RoleId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            Property(x => x.RoleTitle).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
         }
     }
 

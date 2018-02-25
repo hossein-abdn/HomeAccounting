@@ -1848,19 +1848,14 @@ ORDER BY FK_Table, FK_Column";
 
         //Edit By Hossein
         private const string ExtendedPropertySQL = @"
-SELECT  s.name AS [schema],
-        t.name AS [table],
-        c.name AS [column],
-        value AS [property],
-        ep.name AS [property_name]
+SELECT  s.name AS [schema],t.name AS [table],c.name AS [column],value AS [property],ep.name AS [property_name]
 FROM    sys.extended_properties AS ep
-        INNER JOIN sys.tables AS t
-            ON ep.major_id = t.object_id
-        INNER JOIN sys.schemas AS s
-            ON s.schema_id = t.schema_id
-        LEFT JOIN sys.columns AS c
-            ON ep.major_id = c.object_id
-               AND ep.minor_id = c.column_id
+        INNER JOIN ( SELECT name,object_id,schema_id FROM sys.views
+                     UNION
+                     SELECT name,object_id,schema_id FROM sys.tables
+                   ) AS t ON ep.major_id = t.object_id
+        INNER JOIN sys.schemas AS s ON s.schema_id = t.schema_id
+        LEFT JOIN sys.columns AS c ON ep.major_id = c.object_id AND ep.minor_id = c.column_id
 WHERE   class = 1
 ORDER BY t.name";
 

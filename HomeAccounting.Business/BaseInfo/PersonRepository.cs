@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using Infra.Wpf.Business;
 using HomeAccounting.DataAccess.Enums;
+using System.Threading;
+using Infra.Wpf.Security;
 
 namespace HomeAccounting.Business.BaseInfo
 {
@@ -44,7 +46,7 @@ namespace HomeAccounting.Business.BaseInfo
 
         public BusinessResult<bool> AddOrUpdate(Person model, bool isEdit)
         {
-            model.UserId = 1;
+            model.UserId = (Thread.CurrentPrincipal.Identity as Identity).Id;
             model.RecordStatusId = RecordStatus.Exist;
 
             SetOrderItemsBusiness setOrderItems = new SetOrderItemsBusiness(this, this.Context, isEdit, model, Logger);

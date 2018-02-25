@@ -46,7 +46,7 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
 
         private void SubmitExecute()
         {
-            PersonValidator validator = new PersonValidator();
+            var validator = new PersonValidator();
             ValidationResult validationResult = validator.Validate(Model);
             if (!validationResult.IsValid)
             {

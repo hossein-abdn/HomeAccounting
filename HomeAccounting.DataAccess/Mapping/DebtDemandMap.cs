@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // DebtDemand
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public partial class DebtDemandMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DebtDemand>
+    public class DebtDemandMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DebtDemand>
     {
         public DebtDemandMap()
             : this("dbo")
@@ -51,9 +51,7 @@ namespace HomeAccounting.DataAccess.Mapping
             HasOptional(a => a.Person).WithMany(b => b.DebtDemands).HasForeignKey(c => c.PersonId).WillCascadeOnDelete(false); // FK_DebtDemand_Person
             HasOptional(a => a.Transaction).WithMany(b => b.DebtDemands).HasForeignKey(c => c.TransactionId).WillCascadeOnDelete(false); // FK_DebtDemand_Transaction
             HasRequired(a => a.User).WithMany(b => b.DebtDemands).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_DebtDemand_User
-            InitializePartial();
         }
-        partial void InitializePartial();
     }
 
 }

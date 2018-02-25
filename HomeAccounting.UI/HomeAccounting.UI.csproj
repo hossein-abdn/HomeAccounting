@@ -97,6 +97,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,6 +114,7 @@
     <Compile Include="ViewModels\BaseInfo\PersonCreateVM.cs" />
     <Compile Include="ViewModels\BaseInfo\TransactionGroupListVM.cs" />
     <Compile Include="ViewModels\BaseInfo\PersonListVM.cs" />
+    <Compile Include="ViewModels\LoginWindowVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="Views\BaseInfo\LabelListView.xaml.cs">
       <DependentUpon>LabelListView.xaml</DependentUpon>
@@ -122,6 +127,9 @@
     </Compile>
     <Compile Include="Views\BaseInfo\TransactionGroupListView.xaml.cs">
       <DependentUpon>TransactionGroupListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -201,6 +209,13 @@
   <ItemGroup>
     <Resource Include="Resources\Chart-32.png" />
     <Resource Include="Resources\ChartOver-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Lock-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Delete-24.png" />
+    <Resource Include="Resources\Ok-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -18,26 +18,20 @@ namespace HomeAccounting.DataAccess.Mapping
 {
     using Models;
 
-    // Label
+    // Role
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class LabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Label>
+    public class RoleMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Role>
     {
-        public LabelMap()
+        public RoleMap()
             : this("dbo")
         {
         }
 
-        public LabelMap(string schema)
+        public RoleMap(string schema)
         {
-            ToTable("Label", schema);
-            Property(x => x.LabelId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            ToTable("Role", schema);
+            Property(x => x.RoleId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Title).HasColumnName(@"Title").HasColumnType("nvarchar");
-            Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("int");
-            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime");
-            Property(x => x.RecordStatusId).HasColumnName(@"RecordStatusId").HasColumnType("int");
-
-            // Foreign keys
-            HasRequired(a => a.User).WithMany(b => b.Labels).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Label_User
         }
     }
 

@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // User
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public partial class UserMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<User>
+    public class UserMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<User>
     {
         public UserMap()
             : this("dbo")
@@ -35,9 +35,7 @@ namespace HomeAccounting.DataAccess.Mapping
             Property(x => x.Password).HasColumnName(@"Password").HasColumnType("nvarchar");
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime");
             Property(x => x.RecordStatusId).HasColumnName(@"RecordStatusId").HasColumnType("int");
-            InitializePartial();
         }
-        partial void InitializePartial();
     }
 
 }

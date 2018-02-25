@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Account
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public partial class AccountMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Account>
+    public class AccountMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Account>
     {
         public AccountMap()
             : this("dbo")
@@ -40,9 +40,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
             // Foreign keys
             HasRequired(a => a.User).WithMany(b => b.Accounts).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Account_User
-            InitializePartial();
         }
-        partial void InitializePartial();
     }
 
 }

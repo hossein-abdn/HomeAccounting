@@ -31,7 +31,7 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
         private AccountingUow accountingUow { get; set; }
 
 
-        public PersonListVM(AccountingUow uow)
+        public PersonListVM()
         {
             ViewTitle = "لیست اشخاص";
 
@@ -40,7 +40,7 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             CreateEditCommand = new RelayCommand<Person>(CreateEditExecute);
             ChangeStatusCommand = new RelayCommand<Person>(ChangeStatusExecute);
 
-            accountingUow = uow;
+            accountingUow = new AccountingUow();
         }
 
         private void ChangeStatusExecute(Person model)

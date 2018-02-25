@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // DebtDemandLabel
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public partial class DebtDemandLabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DebtDemandLabel>
+    public class DebtDemandLabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DebtDemandLabel>
     {
         public DebtDemandLabelMap()
             : this("dbo")
@@ -37,9 +37,7 @@ namespace HomeAccounting.DataAccess.Mapping
             // Foreign keys
             HasRequired(a => a.DebtDemand).WithMany(b => b.DebtDemandLabels).HasForeignKey(c => c.DebtDemandId).WillCascadeOnDelete(false); // FK_DebtDemandLabel_DebtDemand
             HasRequired(a => a.Label).WithMany(b => b.DebtDemandLabels).HasForeignKey(c => c.LabelId).WillCascadeOnDelete(false); // FK_DebtDemandLabel_Label
-            InitializePartial();
         }
-        partial void InitializePartial();
     }
 
 }

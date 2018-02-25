@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Note
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public partial class NoteMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Note>
+    public class NoteMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Note>
     {
         public NoteMap()
             : this("dbo")
@@ -42,9 +42,7 @@ namespace HomeAccounting.DataAccess.Mapping
             // Foreign keys
             HasOptional(a => a.Notification).WithMany(b => b.Notes).HasForeignKey(c => c.NotificationId).WillCascadeOnDelete(false); // FK_Note_Notification
             HasRequired(a => a.User).WithMany(b => b.Notes).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Note_User
-            InitializePartial();
         }
-        partial void InitializePartial();
     }
 
 }

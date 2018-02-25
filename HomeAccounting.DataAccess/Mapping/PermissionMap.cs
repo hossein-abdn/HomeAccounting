@@ -18,26 +18,21 @@ namespace HomeAccounting.DataAccess.Mapping
 {
     using Models;
 
-    // Label
+    // Permission
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class LabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Label>
+    public class PermissionMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Permission>
     {
-        public LabelMap()
+        public PermissionMap()
             : this("dbo")
         {
         }
 
-        public LabelMap(string schema)
+        public PermissionMap(string schema)
         {
-            ToTable("Label", schema);
-            Property(x => x.LabelId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            ToTable("Permission", schema);
+            Property(x => x.PermmisionId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Title).HasColumnName(@"Title").HasColumnType("nvarchar");
-            Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("int");
-            Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime");
-            Property(x => x.RecordStatusId).HasColumnName(@"RecordStatusId").HasColumnType("int");
-
-            // Foreign keys
-            HasRequired(a => a.User).WithMany(b => b.Labels).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Label_User
+            Property(x => x.Url).HasColumnName(@"Url").HasColumnType("nvarchar");
         }
     }
 

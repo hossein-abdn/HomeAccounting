@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Installment
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public partial class InstallmentMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Installment>
+    public class InstallmentMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Installment>
     {
         public InstallmentMap()
             : this("dbo")
@@ -46,9 +46,7 @@ namespace HomeAccounting.DataAccess.Mapping
             HasOptional(a => a.Transaction).WithMany(b => b.Installments).HasForeignKey(c => c.TransactionId).WillCascadeOnDelete(false); // FK_Installment_Transaction
             HasRequired(a => a.Loan).WithMany(b => b.Installments).HasForeignKey(c => c.LoanId).WillCascadeOnDelete(false); // FK_Installment_Loan
             HasRequired(a => a.User).WithMany(b => b.Installments).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Installment_User
-            InitializePartial();
         }
-        partial void InitializePartial();
     }
 
 }
