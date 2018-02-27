@@ -3,23 +3,28 @@
   <ArrayOfArrayOfString>
     <ArrayOfString>
       <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\Views\LoginWindow.xaml</string>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\Views\LoginWindow.xaml.cs</string>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.UI\ViewModels\LoginWindowVM.cs</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\viewmodels\loginwindowvm.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Models\HomeAccounting.tt</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.business\accountinguow.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Mapping\HomeAccountingMap.tt</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\app.config</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Models\IAccountingContext.cs</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\views\mainwindow.xaml</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\views\mainwindow.xaml.cs</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\viewmodels\mainwindowvm.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\EF.Reverse.POCO.Core.ttinclude</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.dataaccess\mapping\homeaccountingmap.tt</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Hossein\Documents\Visual Studio 2015\Projects\HomeAccounting\HomeAccounting.DataAccess\Models\VUserRole.cs</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.dataaccess\models\homeaccounting.tt</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\views\baseinfo\personcreateview.xaml</string>
+      <string>c:\users\hossein\documents\visual studio 2015\projects\homeaccounting\homeaccounting.ui\views\baseinfo\personcreateview.xaml.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>
