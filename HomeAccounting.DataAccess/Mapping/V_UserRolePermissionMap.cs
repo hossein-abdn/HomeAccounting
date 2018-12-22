@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // V_UserRolePermission
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class V_UserRolePermissionMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<V_UserRolePermission>
+    public partial class V_UserRolePermissionMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<V_UserRolePermission>
     {
         public V_UserRolePermissionMap()
             : this("dbo")
@@ -37,7 +37,9 @@ namespace HomeAccounting.DataAccess.Mapping
             Property(x => x.UserId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(x => x.UserName).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(x => x.PermmisionId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

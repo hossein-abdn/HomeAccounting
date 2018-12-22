@@ -10,7 +10,7 @@
     // ConnectionStringName is the only required setting.
     // As an alternative to ConnectionStringName above, which must match your app/web.config connection string name, you can override them below
     ConnectionString = "Data Source=.;Initial Catalog=Accounting;Persist Security Info=True;User ID=sa;Password=123;MultipleActiveResultSets=True";
-    //ProviderName = "System.Data.SqlClient";
+    ProviderName = "System.Data.SqlClient";
 
     // Namespace = ""; // Override the default namespace here
     DbContextName = "AccountingContext"; // Note: If generating separate files, please give the db context a different name from this tt filename.
@@ -22,7 +22,8 @@
     ConfigFilenameSearchOrder = new[] { "app.config", "web.config" }; // Add more here if required. The config files are searched for in the local project first, then the whole solution second.
     GenerateSeparateFiles = true;
     MakeClassesInternal = false;
-    MakeClassesPartial = false;
+    MakeClassesPartial = true;
+    UseNotifyProperty = true;
     MakeDbContextInterfacePartial = false;
     UseMappingTables = true; // If true, mapping will be used and no mapping tables will be generated. If false, all tables will be generated.
     UsePascalCase = false;    // This will rename the generated C# tables & properties to use PascalCase. If false table & property names will be left alone.
@@ -349,6 +350,9 @@
             t.Columns.Any(x => !x.IsPrimaryKey && !x.IsNullable && x.NameHumanCase.Equals("UserId", StringComparison.InvariantCultureIgnoreCase) && x.PropertyType == "long"));
         return r.ToString();
         */
+        
+        if(UseNotifyProperty)
+            return " : Infra.Wpf.Repository.ModelBase<" + t.NameHumanCaseWithSuffix + ">";
 
         return "";
     };

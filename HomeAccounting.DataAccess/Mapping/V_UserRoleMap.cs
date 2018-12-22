@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // V_UserRole
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class V_UserRoleMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<V_UserRole>
+    public partial class V_UserRoleMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<V_UserRole>
     {
         public V_UserRoleMap()
             : this("dbo")
@@ -34,7 +34,9 @@ namespace HomeAccounting.DataAccess.Mapping
             Property(x => x.UserName).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(x => x.RoleId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(x => x.RoleTitle).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

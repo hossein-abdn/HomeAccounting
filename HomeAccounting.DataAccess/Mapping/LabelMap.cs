@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Label
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class LabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Label>
+    public partial class LabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Label>
     {
         public LabelMap()
             : this("dbo")
@@ -38,7 +38,9 @@ namespace HomeAccounting.DataAccess.Mapping
 
             // Foreign keys
             HasRequired(a => a.User).WithMany(b => b.Labels).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Label_User
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

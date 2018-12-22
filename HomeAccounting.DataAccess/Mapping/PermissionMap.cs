@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Permission
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class PermissionMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Permission>
+    public partial class PermissionMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Permission>
     {
         public PermissionMap()
             : this("dbo")
@@ -33,7 +33,9 @@ namespace HomeAccounting.DataAccess.Mapping
             Property(x => x.PermmisionId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Title).HasColumnName(@"Title").HasColumnType("nvarchar");
             Property(x => x.Url).HasColumnName(@"Url").HasColumnType("nvarchar");
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

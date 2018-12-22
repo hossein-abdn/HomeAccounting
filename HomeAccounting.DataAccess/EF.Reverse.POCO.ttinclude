@@ -18,12 +18,10 @@ fileManager.StartHeader();
 // TargetFrameworkVersion = <#= _targetFrameworkVersion #>
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
-<#//Edit By Hossein
-    if (UseDataAnnotations) {#>
+<#if (UseDataAnnotations) {#>
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-<#  }
-#>
+<#  }#>
 
 namespace <#=Namespace#>
 {

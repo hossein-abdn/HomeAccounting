@@ -20,12 +20,12 @@ namespace HomeAccounting.DataAccess.Models
 
     // V_UserRole
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public partial class V_UserRole
+    public partial class V_UserRole : Infra.Wpf.Repository.ModelBase<V_UserRole>
     {
         [Column(@"UserId", Order = 1, TypeName = "int")]
         [Required]
         [Key]
-        public int UserId { get; set; } // UserId (Primary key)
+        public int UserId { get { return Get<int>(); } set { Set(value); } } // UserId (Primary key)
 
         [Column(@"UserName", Order = 2, TypeName = "nvarchar")]
         [Required]
@@ -33,21 +33,19 @@ namespace HomeAccounting.DataAccess.Models
         [StringLength(50)]
         [Key]
         [DataType(DataType.Text)]
-        [Display(Name = "نام کاربری")]
-        public string UserName { get; set; } // UserName (Primary key) (length: 50)
+        public string UserName { get { return Get<string>(); } set { Set(value); } } // UserName (Primary key) (length: 50)
 
         [Column(@"RoleId", Order = 3, TypeName = "int")]
         [Required]
         [Key]
-        public int RoleId { get; set; } // RoleId (Primary key)
+        public int RoleId { get { return Get<int>(); } set { Set(value); } } // RoleId (Primary key)
 
         [Column(@"RoleTitle", Order = 4, TypeName = "nvarchar")]
         [Required]
         [MaxLength(50)]
         [StringLength(50)]
         [Key]
-        [Display(Name = "نقش")]
-        public string RoleTitle { get; set; } // RoleTitle (Primary key) (length: 50)
+        public string RoleTitle { get { return Get<string>(); } set { Set(value); } } // RoleTitle (Primary key) (length: 50)
 
         public V_UserRole()
         {

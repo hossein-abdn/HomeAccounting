@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Role
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class RoleMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Role>
+    public partial class RoleMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Role>
     {
         public RoleMap()
             : this("dbo")
@@ -32,7 +32,9 @@ namespace HomeAccounting.DataAccess.Mapping
             ToTable("Role", schema);
             Property(x => x.RoleId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Title).HasColumnName(@"Title").HasColumnType("nvarchar");
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

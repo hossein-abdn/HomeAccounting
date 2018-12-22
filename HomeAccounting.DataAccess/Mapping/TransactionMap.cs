@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Transaction
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class TransactionMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Transaction>
+    public partial class TransactionMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Transaction>
     {
         public TransactionMap()
             : this("dbo")
@@ -51,7 +51,9 @@ namespace HomeAccounting.DataAccess.Mapping
             HasRequired(a => a.Account).WithMany(b => b.Transactions).HasForeignKey(c => c.AccountId).WillCascadeOnDelete(false); // FK_Transaction_Account
             HasRequired(a => a.TransactionGroup_TransactionGroupId).WithMany(b => b.TransactionGroupId).HasForeignKey(c => c.TransactionGroupId).WillCascadeOnDelete(false); // FK_Transaction_TransactionGroup
             HasRequired(a => a.User).WithMany(b => b.Transactions).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Transaction_User
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

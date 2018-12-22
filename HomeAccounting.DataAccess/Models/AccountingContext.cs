@@ -52,7 +52,7 @@ namespace HomeAccounting.DataAccess.Models
         }
 
         public AccountingContext()
-            : base("Name=AccountingContext")
+            : base("Name=")
         {
             InitializePartial();
         }

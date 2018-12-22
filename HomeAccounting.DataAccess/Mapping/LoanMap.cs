@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Loan
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class LoanMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Loan>
+    public partial class LoanMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Loan>
     {
         public LoanMap()
             : this("dbo")
@@ -47,7 +47,9 @@ namespace HomeAccounting.DataAccess.Mapping
             // Foreign keys
             HasOptional(a => a.Transaction).WithMany(b => b.Loans).HasForeignKey(c => c.TransactionId).WillCascadeOnDelete(false); // FK_Loan_Transaction
             HasRequired(a => a.User).WithMany(b => b.Loans).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Loan_User
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

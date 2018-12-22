@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // LoanLabel
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class LoanLabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<LoanLabel>
+    public partial class LoanLabelMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<LoanLabel>
     {
         public LoanLabelMap()
             : this("dbo")
@@ -37,7 +37,9 @@ namespace HomeAccounting.DataAccess.Mapping
             // Foreign keys
             HasRequired(a => a.Label).WithMany(b => b.LoanLabels).HasForeignKey(c => c.LabelId).WillCascadeOnDelete(false); // FK_LoanLabel_Label
             HasRequired(a => a.Loan).WithMany(b => b.LoanLabels).HasForeignKey(c => c.LoanId).WillCascadeOnDelete(false); // FK_LoanLabel_Loan
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

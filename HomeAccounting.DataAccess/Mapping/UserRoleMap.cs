@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // UserRole
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class UserRoleMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<UserRole>
+    public partial class UserRoleMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<UserRole>
     {
         public UserRoleMap()
             : this("dbo")
@@ -37,7 +37,9 @@ namespace HomeAccounting.DataAccess.Mapping
             // Foreign keys
             HasRequired(a => a.Role).WithMany(b => b.UserRoles).HasForeignKey(c => c.RoleId).WillCascadeOnDelete(false); // FK_UserRole_Role
             HasRequired(a => a.User).WithMany(b => b.UserRoles).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_UserRole_User
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

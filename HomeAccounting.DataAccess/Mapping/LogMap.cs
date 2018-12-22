@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Logs
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class LogMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Log>
+    public partial class LogMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Log>
     {
         public LogMap()
             : this("dbo")
@@ -39,7 +39,9 @@ namespace HomeAccounting.DataAccess.Mapping
             Property(x => x.PersianDate).HasColumnName(@"PersianDate").HasColumnType("nvarchar").IsOptional();
             Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("int").IsOptional();
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime").IsOptional();
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

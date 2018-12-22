@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Models
 
     // User
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public partial class User
+    public partial class User : Infra.Wpf.Repository.ModelBase<User>
     {
 
         ///<summary>
@@ -29,25 +29,25 @@ namespace HomeAccounting.DataAccess.Models
         [Column(@"UserId", Order = 1, TypeName = "int")]
         [Required]
         [Key]
-        public int UserId { get; set; } // UserId (Primary key)
+        public int UserId { get { return Get<int>(); } set { Set(value); } } // UserId (Primary key)
 
         [Required]
         [MaxLength(50)]
         [StringLength(50)]
         [DataType(DataType.Text)]
-        public string UserName { get; set; } // UserName (length: 50)
+        public string UserName { get { return Get<string>(); } set { Set(value); } } // UserName (length: 50)
 
         [Required]
         [MaxLength(60)]
         [StringLength(60)]
         [DataType(DataType.Password)]
-        public string Password { get; set; } // Password (length: 50)
+        public string Password { get { return Get<string>(); } set { Set(value); } } // Password (length: 60)
 
         [Required]
-        public System.DateTime CreateDate { get; set; } // CreateDate
+        public System.DateTime CreateDate { get { return Get<System.DateTime>(); } set { Set(value); } } // CreateDate
 
         [Required]
-        public int RecordStatusId { get; set; } // RecordStatusId
+        public int RecordStatusId { get { return Get<int>(); } set { Set(value); } } // RecordStatusId
 
         // Reverse navigation
 
@@ -80,10 +80,6 @@ namespace HomeAccounting.DataAccess.Models
         /// </summary>
         public virtual System.Collections.Generic.ICollection<Notification> Notifications { get; set; } // Notification.FK_Notification_User
         /// <summary>
-        /// Child People where [Person].[UserId] point to this entity (FK_Person_User)
-        /// </summary>
-        public virtual System.Collections.Generic.ICollection<Person> People { get; set; } // Person.FK_Person_User
-        /// <summary>
         /// Child Transactions where [Transaction].[UserId] point to this entity (FK_Transaction_User)
         /// </summary>
         public virtual System.Collections.Generic.ICollection<Transaction> Transactions { get; set; } // Transaction.FK_Transaction_User
@@ -105,7 +101,6 @@ namespace HomeAccounting.DataAccess.Models
             Loans = new System.Collections.Generic.List<Loan>();
             Notes = new System.Collections.Generic.List<Note>();
             Notifications = new System.Collections.Generic.List<Notification>();
-            People = new System.Collections.Generic.List<Person>();
             Transactions = new System.Collections.Generic.List<Transaction>();
             TransactionGroups = new System.Collections.Generic.List<TransactionGroup>();
             UserRoles = new System.Collections.Generic.List<UserRole>();

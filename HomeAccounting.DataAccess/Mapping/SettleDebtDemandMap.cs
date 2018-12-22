@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // SettleDebtDemand
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class SettleDebtDemandMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SettleDebtDemand>
+    public partial class SettleDebtDemandMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SettleDebtDemand>
     {
         public SettleDebtDemandMap()
             : this("dbo")
@@ -37,7 +37,9 @@ namespace HomeAccounting.DataAccess.Mapping
             // Foreign keys
             HasRequired(a => a.DebtDemand).WithMany(b => b.SettleDebtDemands).HasForeignKey(c => c.DebtDemandId).WillCascadeOnDelete(false); // FK_SettleDebtDemand_DebtDemand
             HasRequired(a => a.Transaction).WithMany(b => b.SettleDebtDemands).HasForeignKey(c => c.TransactionId).WillCascadeOnDelete(false); // FK_SettleDebtDemand_Transaction
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

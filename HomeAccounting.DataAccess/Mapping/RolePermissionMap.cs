@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // RolePermission
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class RolePermissionMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RolePermission>
+    public partial class RolePermissionMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RolePermission>
     {
         public RolePermissionMap()
             : this("dbo")
@@ -37,7 +37,9 @@ namespace HomeAccounting.DataAccess.Mapping
             // Foreign keys
             HasRequired(a => a.Permission).WithMany(b => b.RolePermissions).HasForeignKey(c => c.PermissionId).WillCascadeOnDelete(false); // FK_RolePermission_Permission
             HasRequired(a => a.Role).WithMany(b => b.RolePermissions).HasForeignKey(c => c.RoleId).WillCascadeOnDelete(false); // FK_RolePermission_Role
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

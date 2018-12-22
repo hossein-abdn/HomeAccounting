@@ -20,7 +20,7 @@ namespace HomeAccounting.DataAccess.Mapping
 
     // Person
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.33.0.0")]
-    public class PersonMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Person>
+    public partial class PersonMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Person>
     {
         public PersonMap()
             : this("dbo")
@@ -36,10 +36,9 @@ namespace HomeAccounting.DataAccess.Mapping
             Property(x => x.UserId).HasColumnName(@"UserId").HasColumnType("int");
             Property(x => x.CreateDate).HasColumnName(@"CreateDate").HasColumnType("datetime");
             Property(x => x.RecordStatusId).HasColumnName(@"RecordStatusId").HasColumnType("int");
-
-            // Foreign keys
-            HasRequired(a => a.User).WithMany(b => b.People).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false); // FK_Person_User
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }
