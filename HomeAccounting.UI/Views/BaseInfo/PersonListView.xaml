@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local="clr-namespace:HomeAccounting.UI.Views.BaseInfo"
+      xmlns:model="clr-namespace:HomeAccounting.DataAccess.Models;assembly=HomeAccounting.DataAccess"
       xmlns:ctl="http://Infra.Wpf"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
@@ -27,8 +28,9 @@
         </Grid.ColumnDefinitions>
         <GroupBox Style="{StaticResource HeaderPage}" Grid.Column="1">
             <DockPanel TextBlock.FontSize="12" TextBlock.FontWeight="Normal">
-                <ctl:SearchPanel DockPanel.Dock="Top" RowMargin="5" ColumnMargin="5" SearchCommand="{Binding GetAllCommand}" SearchPhrase="{Binding SearchPhrase,Mode=OneWayToSource}">
-                    <ctl:TextField Title="نام" FilterField="Name"/>
+                <ctl:SearchPanel DockPanel.Dock="Top" RowMargin="5" ColumnMargin="5" ModelType="model:Person" 
+                                 SearchCommand="{Binding GetAllCommand}" SearchPhrase="{Binding SearchPhrase,Mode=OneWayToSource}">
+                    <ctl:TextField FilterField="Name"/>
                 </ctl:SearchPanel>
                 <ctl:ImageButton Content="جدید" DockPanel.Dock="Top" Image="{StaticResource Add-32}" MouseOverImage="{StaticResource AddOver-32}" HorizontalAlignment="Left" Margin="0,5" ImageSize="15" Command="{Binding CreateEditCommand}"/>
                 <ctl:CustomGrid x:Name="grid" ColumnsToAdd="Name,CreateDate" ItemsSource="{Binding ItemsSource}">

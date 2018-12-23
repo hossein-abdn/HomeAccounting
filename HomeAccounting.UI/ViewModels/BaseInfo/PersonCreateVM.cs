@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Infra.Wpf.Common.Helpers;
 using HomeAccounting.Business;
 using Infra.Wpf.Business;
-using HomeAccounting.UI.Validators;
 using FluentValidation.Results;
 using HomeAccounting.Business.BaseInfo;
 
@@ -42,20 +41,20 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             }
 
             accountingUow = uow;
+
+            Model.Exclude(new string[] { "UserId", "CreateDate", "RecordStatusId" });
         }
 
         private void SubmitExecute()
         {
-            var validator = new PersonValidator();
-            ValidationResult validationResult = validator.Validate(Model);
+            ValidationResult validationResult = Model.Validate();
             if (!validationResult.IsValid)
             {
-                foreach (var item in validationResult.Errors)
-                    Billboard.ShowMessage(Infra.Wpf.Controls.MessageType.Error, item.ErrorMessage);
+                Billboard.ShowMessage(Infra.Wpf.Controls.MessageType.Error, validationResult.Errors[0].ErrorMessage);
                 return;
             }
 
-            BusinessResult<bool> result = ((PersonRepository) accountingUow.PersonRepository).AddOrUpdate(Model, isEdit);
+            BusinessResult<bool> result = ((PersonRepository)accountingUow.PersonRepository).AddOrUpdate(Model, isEdit);
             if (result.HasException == false && result.IsOnBeforExecute)
             {
                 BusinessResult<int> saveResult = accountingUow.SaveChange();
