@@ -12,4 +12,8 @@
     <ImageSource x:Key="AddOver-32">/Resources/AddOver-32.png</ImageSource>
     <ImageSource x:Key="Chart-32">/Resources/Chart-32.png</ImageSource>
     <ImageSource x:Key="ChartOver-32">/Resources/ChartOver-32.png</ImageSource>
+    <ImageSource x:Key="Up-32">/Resources/Up-32.png</ImageSource>
+    <ImageSource x:Key="UpOver-32">/Resources/UpOver-32.png</ImageSource>
+    <ImageSource x:Key="Down-32">/Resources/Down-32.png</ImageSource>
+    <ImageSource x:Key="DownOver-32">/Resources/DownOver-32.png</ImageSource>
 </ResourceDictionary>

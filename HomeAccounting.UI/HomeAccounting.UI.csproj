@@ -233,6 +233,12 @@
     <Resource Include="Resources\Delete-24.png" />
     <Resource Include="Resources\Ok-24.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Down-32.png" />
+    <Resource Include="Resources\DownOver-32.png" />
+    <Resource Include="Resources\Up-32.png" />
+    <Resource Include="Resources\UpOver-32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

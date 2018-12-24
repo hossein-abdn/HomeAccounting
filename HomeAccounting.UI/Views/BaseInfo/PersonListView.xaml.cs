@@ -60,7 +60,7 @@ namespace HomeAccounting.UI.Views.BaseInfo
                 }
                 else
                 {
-                    var row = grid.Rows.FirstOrDefault(x => ((Person) x.DataItem).PersonId == _id);
+                    var row = grid.Rows.FirstOrDefault(x => ((Person) x.DataItem)?.PersonId == _id);
                     if (row != null)
                     {
                         grid.SelectedIndex = row.Index;

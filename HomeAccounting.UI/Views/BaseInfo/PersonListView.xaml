@@ -35,9 +35,11 @@
                 <ctl:ImageButton Content="جدید" DockPanel.Dock="Top" Image="{StaticResource Add-32}" MouseOverImage="{StaticResource AddOver-32}" HorizontalAlignment="Left" Margin="0,5" ImageSize="15" Command="{Binding CreateEditCommand}"/>
                 <ctl:CustomGrid x:Name="grid" ColumnsToAdd="Name,CreateDate" ItemsSource="{Binding ItemsSource}">
                     <ctl:CustomGrid.ButtonColumns>
-                        <ctl:CustomButtonColumn ButtonType="Edit" Order="2" Width="32" Command="{Binding Data.CreateEditCommand,Source={StaticResource proxy}}"/>
-                        <ctl:CustomButtonColumn ButtonType="Delete" Order="3" Width="32" Command="{Binding Data.ChangeStatusCommand,Source={StaticResource proxy}}"/>
-                        <ctl:CustomButtonColumn Image="{StaticResource Chart-32}" MouseOverImage="{StaticResource ChartOver-32}" Width="32" Order="4" ToolTip="نمودار"/>
+                        <ctl:CustomButtonColumn Image="{StaticResource Up-32}" MouseOverImage="{StaticResource UpOver-32}" Width="32" Order="2" Command="{Binding Data.UpCommand,Source={StaticResource proxy}}" ToolTip="افزایش اولویت"/>
+                        <ctl:CustomButtonColumn Image="{StaticResource Down-32}" MouseOverImage="{StaticResource DownOver-32}" Width="32" Order="3" Command="{Binding Data.DownCommand,Source={StaticResource proxy}}" ToolTip="کاهش اولویت"/>
+                        <ctl:CustomButtonColumn ButtonType="Edit" Order="4" Width="32" Command="{Binding Data.CreateEditCommand,Source={StaticResource proxy}}"/>
+                        <ctl:CustomButtonColumn ButtonType="Delete" Order="5" Width="32" Command="{Binding Data.ChangeStatusCommand,Source={StaticResource proxy}}"/>
+                        <ctl:CustomButtonColumn Image="{StaticResource Chart-32}" MouseOverImage="{StaticResource ChartOver-32}" Width="32" Order="6" ToolTip="نمودار"/>
                     </ctl:CustomGrid.ButtonColumns>
                 </ctl:CustomGrid>
             </DockPanel>

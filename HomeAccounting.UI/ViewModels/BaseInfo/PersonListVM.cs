@@ -22,6 +22,10 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
 
         public RelayCommand<Person> ChangeStatusCommand { get; set; }
 
+        public RelayCommand<Person> UpCommand { get; set; }
+
+        public RelayCommand<Person> DownCommand { get; set; }
+
         public string SearchPhrase
         {
             get { return Get<string>(); }
@@ -39,8 +43,60 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             LoadedEventCommand = new RelayCommand(LoadedEventExecute);
             CreateEditCommand = new RelayCommand<Person>(CreateEditExecute);
             ChangeStatusCommand = new RelayCommand<Person>(ChangeStatusExecute);
+            UpCommand = new RelayCommand<Person>(UpExecute);
+            DownCommand = new RelayCommand<Person>(DownExecute);
 
             accountingUow = new AccountingUow();
+        }
+
+        private void DownExecute(Person model)
+        {
+            var resultCount = accountingUow.PersonRepository.GetCount(x => x.RecordStatusId == DataAccess.Enums.RecordStatus.Exist);
+            if (resultCount.HasException == false)
+            {
+                if (model.OrderItem < resultCount.Data)
+                {
+                    model.OrderItem++;
+                    var result = ((PersonRepository)accountingUow.PersonRepository).ChangeOrderItem(true, model);
+                    if (result.HasException == false)
+                    {
+                        BusinessResult<int> saveResult = accountingUow.SaveChange();
+                        if (saveResult.HasException)
+                            result.Message = saveResult.Message;
+                        else
+                        {
+                            Messenger.Default.Send(model.PersonId, "PersonListView_SaveItemId");
+                            LoadedEventExecute();
+                        }
+                    }
+
+                    Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
+                }
+            }
+            else
+                Billboard.ShowMessage(resultCount.Message.MessageType, resultCount.Message.Message);
+        }
+
+        private void UpExecute(Person model)
+        {
+            if (model.OrderItem != 1)
+            {
+                model.OrderItem--;
+                var result = ((PersonRepository)accountingUow.PersonRepository).ChangeOrderItem(true, model);
+                if (result.HasException == false)
+                {
+                    BusinessResult<int> saveResult = accountingUow.SaveChange();
+                    if (saveResult.HasException)
+                        result.Message = saveResult.Message;
+                    else
+                    {
+                        Messenger.Default.Send(model.PersonId, "PersonListView_SaveItemId");
+                        LoadedEventExecute();
+                    }
+                }
+
+                Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
+            }
         }
 
         private void ChangeStatusExecute(Person model)
@@ -49,7 +105,7 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             {
                 Messenger.Default.Send(model, "PersonListView_SaveItemIndex");
 
-                var result = ((PersonRepository) accountingUow.PersonRepository).ChangeStatus(model);
+                var result = ((PersonRepository)accountingUow.PersonRepository).ChangeStatus(model);
                 if (result.HasException == false)
                 {
                     BusinessResult<int> saveResult = accountingUow.SaveChange();

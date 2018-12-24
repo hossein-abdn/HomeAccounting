@@ -49,10 +49,9 @@ namespace HomeAccounting.Business.BaseInfo
             model.UserId = (Thread.CurrentPrincipal.Identity as Identity).Id;
             model.RecordStatusId = RecordStatus.Exist;
 
-            SetOrderItemsBusiness setOrderItems = new SetOrderItemsBusiness(this, this.Context, isEdit, model, Logger);
-            setOrderItems.Execute();
-            if (setOrderItems.Result.HasException)
-                return new BusinessResult<bool> { Exception = setOrderItems.Result.Exception, Message = setOrderItems.Result.Message };
+            var resultOrder = ChangeOrderItem(isEdit, model);
+            if (resultOrder.HasException)
+                return new BusinessResult<bool> { Exception = resultOrder.Exception, Message = resultOrder.Message };
 
             if (isEdit)
             {
@@ -102,6 +101,14 @@ namespace HomeAccounting.Business.BaseInfo
 
                 return Add(model);
             }
+        }
+
+        public BusinessResult ChangeOrderItem(bool isEdit, Person model)
+        {
+            SetOrderItemsBusiness setOrderItems = new SetOrderItemsBusiness(this, this.Context, isEdit, model, Logger);
+            setOrderItems.Execute();
+
+            return setOrderItems.Result;
         }
     }
 }
