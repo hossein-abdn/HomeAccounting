@@ -88,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\BaseInfo\LabelCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BaseInfo\LabelListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,12 +120,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\BaseInfo\LabelCreateVM.cs" />
     <Compile Include="ViewModels\BaseInfo\LabelListVM.cs" />
     <Compile Include="ViewModels\BaseInfo\PersonCreateVM.cs" />
     <Compile Include="ViewModels\BaseInfo\TransactionGroupListVM.cs" />
     <Compile Include="ViewModels\BaseInfo\PersonListVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
+    <Compile Include="Views\BaseInfo\LabelCreateView.xaml.cs">
+      <DependentUpon>LabelCreateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BaseInfo\LabelListView.xaml.cs">
       <DependentUpon>LabelListView.xaml</DependentUpon>
     </Compile>

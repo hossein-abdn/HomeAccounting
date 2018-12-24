@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountingUow.cs" />
+    <Compile Include="BaseInfo\LabelRepository.cs" />
     <Compile Include="BaseInfo\PersonRepository.cs" />
     <Compile Include="BaseInfo\SetOrderItemsBusiness.cs" />
     <Compile Include="LoginBusiness.cs" />

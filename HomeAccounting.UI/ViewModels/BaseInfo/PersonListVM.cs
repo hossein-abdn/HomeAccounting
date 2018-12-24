@@ -45,7 +45,7 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
 
         private void ChangeStatusExecute(Person model)
         {
-            if (ShowMessageBox("آیا مطمئن هستید؟", "حذف", Infra.Wpf.Controls.MsgButton.YesNo, Infra.Wpf.Controls.MsgIcon.Question, Infra.Wpf.Controls.MsgResult.No) == Infra.Wpf.Controls.MsgResult.Yes)
+            if (ShowMessageBox("آیا از حذف شخص مطمئین هستید؟", "حذف", Infra.Wpf.Controls.MsgButton.YesNo, Infra.Wpf.Controls.MsgIcon.Question, Infra.Wpf.Controls.MsgResult.No) == Infra.Wpf.Controls.MsgResult.Yes)
             {
                 Messenger.Default.Send(model, "PersonListView_SaveItemIndex");
 

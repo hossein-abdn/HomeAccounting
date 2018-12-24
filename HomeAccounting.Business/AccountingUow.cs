@@ -10,6 +10,8 @@ namespace HomeAccounting.Business
     {
         private IRepository<Person> personRepository;
 
+        private IRepository<Label> labelRepository;
+
         public static string ConnectionString;
 
         private static string key = "87b81f22-13cf-4c2b-a17f-64f6464e62b6";
@@ -22,6 +24,11 @@ namespace HomeAccounting.Business
         public IRepository<Person> PersonRepository
         {
             get { return personRepository ?? (personRepository = new PersonRepository(Context, Logger, false)); }
+        }
+
+        public IRepository<Label> LabelRepository
+        {
+            get { return labelRepository ?? (labelRepository = new LabelRepository(Context, Logger, false)); }
         }
 
         public AccountingUow() : this(new AccountingContext(ConnectionString))

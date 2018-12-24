@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace HomeAccounting.UI.Views.BaseInfo
 {
-    /// <summary>
-    /// Interaction logic for PersonListView.xaml
-    /// </summary>
     public partial class PersonListView : Page
     {
         int _index = 0;
