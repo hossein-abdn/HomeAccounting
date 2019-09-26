@@ -1,18 +1,12 @@
-﻿using HomeAccounting.DataAccess.Models;
-using HomeAccounting.UI.Views.BaseInfo;
-using Infra.Wpf.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Infra.Wpf.Common.Helpers;
+﻿using HomeAccounting.UI.Views;
 using HomeAccounting.Business;
+using HomeAccounting.DataAccess.Models;
+using HomeAccounting.Business.Repository;
+using Infra.Wpf.Mvvm;
 using Infra.Wpf.Business;
 using FluentValidation.Results;
-using HomeAccounting.Business.BaseInfo;
 
-namespace HomeAccounting.UI.ViewModels.BaseInfo
+namespace HomeAccounting.UI.ViewModels
 {
     [ViewType(typeof(PersonCreateView))]
     public class PersonCreateVM : ViewModelBase<Person>
@@ -22,6 +16,8 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
         public RelayCommand SubmitCommand { get; set; }
 
         private AccountingUow accountingUow { get; set; }
+
+        private PersonBusinessSet businessSet { get; set; }
 
         public PersonCreateVM(AccountingUow uow, Person model = null)
         {
@@ -41,6 +37,7 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             }
 
             accountingUow = uow;
+            businessSet = new PersonBusinessSet((PersonRepository)accountingUow.PersonRepository, accountingUow.Logger);
 
             Model.Exclude(new string[] { "UserId", "CreateDate", "RecordStatusId" });
         }
@@ -55,7 +52,12 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
                 return;
             }
 
-            BusinessResult<bool> result = ((PersonRepository)accountingUow.PersonRepository).AddOrUpdate(Model, isEdit);
+            BusinessResult<bool> result;
+            if (isEdit)
+                result = businessSet.Update(Model);
+            else
+                result = businessSet.Add(Model);
+
             if (result.HasException == false && result.IsOnBeforExecute)
             {
                 BusinessResult<int> saveResult = accountingUow.SaveChange();

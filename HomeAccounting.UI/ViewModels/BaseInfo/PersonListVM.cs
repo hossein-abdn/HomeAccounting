@@ -1,20 +1,19 @@
-﻿using HomeAccounting.Business;
-using HomeAccounting.DataAccess.Models;
-using HomeAccounting.UI.Views.BaseInfo;
-using Infra.Wpf.Mvvm;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System;
+using Infra.Wpf.Mvvm;
 using Infra.Wpf.Business;
-using HomeAccounting.Business.BaseInfo;
 using Infra.Wpf.Common.Helpers;
-using System.Linq;
+using HomeAccounting.Business;
+using HomeAccounting.DataAccess.Models;
+using HomeAccounting.Business.Repository;
+using HomeAccounting.UI.Views;
 
-namespace HomeAccounting.UI.ViewModels.BaseInfo
+namespace HomeAccounting.UI.ViewModels
 {
     [ViewType(typeof(PersonListView))]
     public class PersonListVM : ViewModelBase<Person>
     {
-        public RelayCommand<string> GetAllCommand { get; set; }
+        public RelayCommand<List<KeyValuePair<string, string>>> GetAllCommand { get; set; }
 
         public RelayCommand LoadedEventCommand { get; set; }
 
@@ -26,20 +25,21 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
 
         public RelayCommand<Person> DownCommand { get; set; }
 
-        public string SearchPhrase
+        public List<KeyValuePair<string, string>> SearchPhraseList
         {
-            get { return Get<string>(); }
+            get { return Get<List<KeyValuePair<string, string>>>(); }
             set { Set(value); }
         }
 
         private AccountingUow accountingUow { get; set; }
 
+        private PersonBusinessSet businessSet { get; set; }
 
         public PersonListVM()
         {
             ViewTitle = "لیست اشخاص";
 
-            GetAllCommand = new RelayCommand<string>(GetAllExecute);
+            GetAllCommand = new RelayCommand<List<KeyValuePair<string, string>>>(GetAllExecute);
             LoadedEventCommand = new RelayCommand(LoadedEventExecute);
             CreateEditCommand = new RelayCommand<Person>(CreateEditExecute);
             ChangeStatusCommand = new RelayCommand<Person>(ChangeStatusExecute);
@@ -47,34 +47,26 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             DownCommand = new RelayCommand<Person>(DownExecute);
 
             accountingUow = new AccountingUow();
+            businessSet = new PersonBusinessSet((PersonRepository)accountingUow.PersonRepository, accountingUow.Logger);
         }
 
         private void DownExecute(Person model)
         {
             var resultCount = accountingUow.PersonRepository.GetCount(x => x.RecordStatusId == DataAccess.Enums.RecordStatus.Exist);
-            if (resultCount.HasException == false)
+            if (model.OrderItem < resultCount)
             {
-                if (model.OrderItem < resultCount.Data)
-                {
-                    model.OrderItem++;
-                    var result = ((PersonRepository)accountingUow.PersonRepository).ChangeOrderItem(true, model);
-                    if (result.HasException == false)
-                    {
-                        BusinessResult<int> saveResult = accountingUow.SaveChange();
-                        if (saveResult.HasException)
-                            result.Message = saveResult.Message;
-                        else
-                        {
-                            Messenger.Default.Send(model.PersonId, "PersonListView_SaveItemId");
-                            LoadedEventExecute();
-                        }
-                    }
+                model.OrderItem++;
+                businessSet.SetOrderItems(true, model);
 
-                    Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
+                BusinessResult<int> saveResult = accountingUow.SaveChange();
+                if (saveResult.HasException)
+                    Billboard.ShowMessage(saveResult.Message.MessageType, saveResult.Message.Message);
+                else
+                {
+                    Messenger.Default.Send(model.PersonId, "PersonListView_SaveItemId");
+                    LoadedEventExecute();
                 }
             }
-            else
-                Billboard.ShowMessage(resultCount.Message.MessageType, resultCount.Message.Message);
         }
 
         private void UpExecute(Person model)
@@ -82,20 +74,16 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             if (model.OrderItem != 1)
             {
                 model.OrderItem--;
-                var result = ((PersonRepository)accountingUow.PersonRepository).ChangeOrderItem(true, model);
-                if (result.HasException == false)
-                {
-                    BusinessResult<int> saveResult = accountingUow.SaveChange();
-                    if (saveResult.HasException)
-                        result.Message = saveResult.Message;
-                    else
-                    {
-                        Messenger.Default.Send(model.PersonId, "PersonListView_SaveItemId");
-                        LoadedEventExecute();
-                    }
-                }
+                businessSet.SetOrderItems(true, model);
 
-                Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
+                BusinessResult<int> saveResult = accountingUow.SaveChange();
+                if (saveResult.HasException)
+                    Billboard.ShowMessage(saveResult.Message.MessageType, saveResult.Message.Message);
+                else
+                {
+                    Messenger.Default.Send(model.PersonId, "PersonListView_SaveItemId");
+                    LoadedEventExecute();
+                }
             }
         }
 
@@ -105,14 +93,13 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             {
                 Messenger.Default.Send(model, "PersonListView_SaveItemIndex");
 
-                var result = ((PersonRepository)accountingUow.PersonRepository).ChangeStatus(model);
+                var result = businessSet.Delete(model);
                 if (result.HasException == false)
                 {
                     BusinessResult<int> saveResult = accountingUow.SaveChange();
                     if (saveResult.HasException)
                         result.Message = saveResult.Message;
-
-                    GetAllExecute(SearchPhrase);
+                    GetAllExecute(SearchPhraseList);
                     Messenger.Default.Send("index", "PersonListView_SetScrollView");
                 }
 
@@ -127,17 +114,37 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
 
         private void LoadedEventExecute()
         {
-            GetAllExecute(SearchPhrase);
+            GetAllExecute(SearchPhraseList);
             Messenger.Default.Send("id", "PersonListView_SetScrollView");
         }
 
-        private void GetAllExecute(string predicate)
+        private void GetAllExecute(List<KeyValuePair<string, string>> filterList)
         {
-            var result = accountingUow.PersonRepository.GetAll(predicate: predicate);
+            var predicate = GeneratePredicate(filterList);
+            var result = businessSet.GetAll(predicate);
             if (result.HasException == false)
                 ItemsSource = new ObservableCollection<Person>(result.Data);
             else
                 Billboard.ShowMessage(result.Message.MessageType, result.Message.Message);
+        }
+
+        private string GeneratePredicate(List<KeyValuePair<string, string>> filterList)
+        {
+            string result = "";
+            if (filterList != null)
+            {
+                foreach (var item in filterList)
+                {
+                    if (!string.IsNullOrWhiteSpace(item.Value))
+                    {
+                        if (!string.IsNullOrEmpty(result))
+                            result += " AND ";
+                        result += item.Value;
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

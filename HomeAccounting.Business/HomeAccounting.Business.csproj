@@ -53,11 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountingUow.cs" />
-    <Compile Include="BaseInfo\LabelRepository.cs" />
-    <Compile Include="BaseInfo\PersonRepository.cs" />
-    <Compile Include="BaseInfo\SetOrderItemsBusiness.cs" />
-    <Compile Include="LoginBusiness.cs" />
+    <Compile Include="Business\BaseInfo\LabelBusinessSet.cs" />
+    <Compile Include="Business\BaseInfo\PersonBusinessSet.cs" />
+    <Compile Include="Business\BaseInfo\TransactionGroupBusinessSet.cs" />
+    <Compile Include="Repository\AccountingUow.cs" />
+    <Compile Include="Repository\BaseInfo\PersonRepository.cs" />
+    <Compile Include="Business\Home\LoginBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

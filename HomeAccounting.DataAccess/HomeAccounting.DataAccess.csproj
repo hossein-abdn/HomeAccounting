@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\RecordStatus.cs" />
+    <Compile Include="Enums\TransactionGroupType.cs" />
     <Compile Include="Mapping\AccountMap.cs">
       <DependentUpon>HomeAccountingMap.tt</DependentUpon>
     </Compile>

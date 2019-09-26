@@ -1,14 +1,8 @@
 ﻿using HomeAccounting.Business;
-using HomeAccounting.UI.ViewModels.BaseInfo;
-using Infra.Wpf.Business;
+using Infra.Wpf.Common;
 using Infra.Wpf.Mvvm;
 using Infra.Wpf.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace HomeAccounting.UI.ViewModels
 {
@@ -41,7 +35,7 @@ namespace HomeAccounting.UI.ViewModels
 
         private void ClosedEventExecute()
         {
-            Logger logger = new Logger(AccountingUow.ConnectionString);
+            ILogger logger = new Logger(AccountingUow.ConnectionString);
             logger.Log(new LogInfo
             {
                 CallSite = this.GetType().FullName,

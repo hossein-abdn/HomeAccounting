@@ -1,6 +1,6 @@
 ﻿using HomeAccounting.Business;
 using HomeAccounting.DataAccess.Models;
-using Infra.Wpf.Business;
+using Infra.Wpf.Common;
 using Infra.Wpf.Mvvm;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,6 +32,8 @@ namespace HomeAccounting.UI.ViewModels
 
         public RelayCommand<ArgsParameter<KeyEventArgs>> KeyDownCommand { get; set; }
 
+        private AccountingUow accountingUow;
+
         #endregion
 
         #region Methods
@@ -42,6 +44,8 @@ namespace HomeAccounting.UI.ViewModels
             LoginCommand = new RelayCommand(LoginExecute);
             CancelCommand = new RelayCommand(CancelExecute);
             KeyDownCommand = new RelayCommand<ArgsParameter<KeyEventArgs>>(KeyDownExecute);
+
+            accountingUow = new AccountingUow();
         }
 
         private void KeyDownExecute(ArgsParameter<KeyEventArgs> obj)
@@ -57,10 +61,10 @@ namespace HomeAccounting.UI.ViewModels
 
         private void LoginExecute()
         {
-            LoginBusiness business = new LoginBusiness(UserName, Password, new Logger(AccountingUow.ConnectionString));
+            LoginBusiness business = new LoginBusiness(UserName, Password, accountingUow);
             business.Execute();
 
-            if (business.Result.IsOnExecute)
+            if (!business.Result.HasException)
                 Messenger.Default.Send("Close", "LoginWindow_CloseWindow");
             else
                 ShowMessageBox(business.Result.Message.Message, business.Result.Message.Title, Infra.Wpf.Controls.MsgButton.OK, Infra.Wpf.Controls.MsgIcon.Error);

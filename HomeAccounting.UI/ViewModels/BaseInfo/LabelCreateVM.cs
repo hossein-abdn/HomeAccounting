@@ -1,17 +1,11 @@
 ﻿using FluentValidation.Results;
 using HomeAccounting.Business;
-using HomeAccounting.Business.BaseInfo;
 using HomeAccounting.DataAccess.Models;
-using HomeAccounting.UI.Views.BaseInfo;
+using HomeAccounting.UI.Views;
 using Infra.Wpf.Business;
 using Infra.Wpf.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HomeAccounting.UI.ViewModels.BaseInfo
+namespace HomeAccounting.UI.ViewModels
 {
     [ViewType(typeof(LabelCreateView))]
     public class LabelCreateVM : ViewModelBase<Label>
@@ -21,6 +15,8 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
         public RelayCommand SubmitCommand { get; set; }
 
         private AccountingUow accountingUow { get; set; }
+
+        private LabelBusinessSet businessSet { get; set; }
 
         public LabelCreateVM(AccountingUow uow, Label model = null)
         {
@@ -40,6 +36,7 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
             }
 
             accountingUow = uow;
+            businessSet = new LabelBusinessSet(accountingUow.LabelRepository, accountingUow.Logger);
 
             Model.Exclude(new string[] { "UserId", "RecordStatusId", "CreateDate" });
         }
@@ -54,7 +51,12 @@ namespace HomeAccounting.UI.ViewModels.BaseInfo
                 return;
             }
 
-            BusinessResult<bool> result = ((LabelRepository)accountingUow.LabelRepository).AddOrUpdate(Model, isEdit);
+            BusinessResult<bool> result;
+            if (isEdit)
+                result = businessSet.Update(Model);
+            else
+                result = businessSet.Add(Model);
+            
             if(result.HasException == false && result.IsOnBeforExecute)
             {
                 BusinessResult<int> saveResult = accountingUow.SaveChange();

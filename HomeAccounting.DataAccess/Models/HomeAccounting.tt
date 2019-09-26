@@ -231,7 +231,7 @@
     // As long as the type can be mapped to your new type, all is well.
     EnumsDefinitions.Add(new EnumDefinition { Schema = "dbo", Table = "Person", Column = "RecordStatusId", EnumType = "Enums.RecordStatus" });
 	EnumsDefinitions.Add(new EnumDefinition { Schema = "dbo", Table = "Label", Column = "RecordStatusId", EnumType = "Enums.RecordStatus"});
-    //EnumsDefinitions.Add(new EnumDefinition { Schema = "dbo", Table = "OrderHeader", Column = "OrderStatus", EnumType = "OrderStatusType" }); // This will replace OrderHeader.OrderStatus type to be an OrderStatusType enum
+	EnumsDefinitions.Add(new EnumDefinition { Schema = "dbo", Table = "TransactionGroup", Column = "TypeId", EnumType = "Enums.TransactionGroupType"});
 
     // Use the following function if you need to apply additional modifications to a column
     // eg. normalise names etc.

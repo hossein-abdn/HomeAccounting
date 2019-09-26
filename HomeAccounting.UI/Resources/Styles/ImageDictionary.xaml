@@ -8,6 +8,7 @@
     <ImageSource x:Key="LabelOver-32">/Resources/LabelOver-32.png</ImageSource>
     <ImageSource x:Key="Group-32">/Resources/Group-32.png</ImageSource>
     <ImageSource x:Key="GroupOver-32">/Resources/GroupOver-32.png</ImageSource>
+    <ImageSource x:Key="GroupItem-16">/Resources/GroupItem-16.png</ImageSource>
     <ImageSource x:Key="Add-32">/Resources/Add-32.png</ImageSource>
     <ImageSource x:Key="AddOver-32">/Resources/AddOver-32.png</ImageSource>
     <ImageSource x:Key="Chart-32">/Resources/Chart-32.png</ImageSource>
@@ -16,4 +17,8 @@
     <ImageSource x:Key="UpOver-32">/Resources/UpOver-32.png</ImageSource>
     <ImageSource x:Key="Down-32">/Resources/Down-32.png</ImageSource>
     <ImageSource x:Key="DownOver-32">/Resources/DownOver-32.png</ImageSource>
+    <ImageSource x:Key="Delete-24">/Resources/Delete-24.png</ImageSource>
+    <ImageSource x:Key="DeleteOver-24">/Resources/DeleteOver-24.png</ImageSource>
+    <ImageSource x:Key="Edit-24">/Resources/Edit-24.png</ImageSource>
+    <ImageSource x:Key="EditOver-24">/Resources/EditOver-24.png</ImageSource>
 </ResourceDictionary>

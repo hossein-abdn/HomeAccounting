@@ -1,13 +1,10 @@
-﻿using C1.WPF.Toolbar;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Threading;
 using System.Windows;
+using C1.WPF.Toolbar;
 
 namespace HomeAccounting.UI.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         C1ToolbarButton selectedButton;

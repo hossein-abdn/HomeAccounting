@@ -104,15 +104,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BaseInfo\TransactionGroupCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BaseInfo\TransactionGroupListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LoginWindow.xaml">
+    <Page Include="Views\Home\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\Home\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -123,10 +127,13 @@
     <Compile Include="ViewModels\BaseInfo\LabelCreateVM.cs" />
     <Compile Include="ViewModels\BaseInfo\LabelListVM.cs" />
     <Compile Include="ViewModels\BaseInfo\PersonCreateVM.cs" />
+    <Compile Include="ViewModels\BaseInfo\TransactionGroupCreateVM.cs" />
     <Compile Include="ViewModels\BaseInfo\TransactionGroupListVM.cs" />
     <Compile Include="ViewModels\BaseInfo\PersonListVM.cs" />
-    <Compile Include="ViewModels\LoginWindowVM.cs" />
-    <Compile Include="ViewModels\MainWindowVM.cs" />
+    <Compile Include="ViewModels\BaseInfo\TransactionGroupNode.cs" />
+    <Compile Include="ViewModels\BaseInfo\TransactionGroupTypeNode.cs" />
+    <Compile Include="ViewModels\Home\LoginWindowVM.cs" />
+    <Compile Include="ViewModels\Home\MainWindowVM.cs" />
     <Compile Include="Views\BaseInfo\LabelCreateView.xaml.cs">
       <DependentUpon>LabelCreateView.xaml</DependentUpon>
     </Compile>
@@ -139,13 +146,16 @@
     <Compile Include="Views\BaseInfo\PersonListView.xaml.cs">
       <DependentUpon>PersonListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BaseInfo\TransactionGroupCreateView.xaml.cs">
+      <DependentUpon>TransactionGroupCreateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BaseInfo\TransactionGroupListView.xaml.cs">
       <DependentUpon>TransactionGroupListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginWindow.xaml.cs">
+    <Compile Include="Views\Home\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
+    <Compile Include="Views\Home\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -238,6 +248,14 @@
     <Resource Include="Resources\DownOver-32.png" />
     <Resource Include="Resources\Up-32.png" />
     <Resource Include="Resources\UpOver-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\GroupItem-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DeleteOver-24.png" />
+    <Resource Include="Resources\Edit-24.png" />
+    <Resource Include="Resources\EditOver-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

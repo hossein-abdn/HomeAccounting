@@ -1,10 +1,9 @@
-﻿<Page x:Class="HomeAccounting.UI.Views.BaseInfo.LabelListView"
+﻿<Page x:Class="HomeAccounting.UI.Views.LabelListView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-      xmlns:local="clr-namespace:HomeAccounting.UI.Views.BaseInfo"
       xmlns:model="clr-namespace:HomeAccounting.DataAccess.Models;assembly=HomeAccounting.DataAccess"
       xmlns:ctl="http://Infra.Wpf"
       mc:Ignorable="d" 
@@ -29,7 +28,7 @@
         <GroupBox Style="{StaticResource HeaderPage}" Grid.Column="1">
             <DockPanel TextBlock.FontSize="12" TextBlock.FontWeight="Normal">
                 <ctl:SearchPanel DockPanel.Dock="Top" RowMargin="5" ColumnMargin="5" ModelType="model:Label"
-                                 SearchCommand="{Binding GetAllCommand}" SearchPhrase="{Binding SearchPhrase,Mode=OneWayToSource}">
+                                 SearchCommand="{Binding GetAllCommand}" SearchPhraseList="{Binding SearchPhraseList,Mode=OneWayToSource}">
                     <ctl:TextField FilterField="Title"/>
                 </ctl:SearchPanel>
                 <ctl:ImageButton Content="جدید" DockPanel.Dock="Top" Image="{StaticResource Add-32}" MouseOverImage="{StaticResource AddOver-32}" HorizontalAlignment="Left" Margin="0,5" ImageSize="15" Command="{Binding CreateEditCommand}"/>
